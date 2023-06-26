@@ -1,2 +1,2 @@
-# gdot-game-SM
+# godot-game-sm
  
