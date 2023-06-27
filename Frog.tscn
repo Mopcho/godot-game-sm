@@ -97,6 +97,30 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_aqrw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pm5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pm5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pm5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pm5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pm5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pm5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pm5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pm5y")
 }],
 "loop": true,
 "name": &"Idle",
@@ -130,7 +154,7 @@ shape = SubResource("RectangleShape2D_6ytci")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -11)
 sprite_frames = SubResource("SpriteFrames_d45rq")
-animation = &"Jump"
+animation = &"Idle"
 metadata/_edit_lock_ = true
 
 [node name="PlayerDetection" type="Area2D" parent="."]

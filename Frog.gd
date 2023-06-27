@@ -9,6 +9,7 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	
 	if chase == true:
+		get_node("AnimatedSprite2D").play("Jump")
 		player = get_node("../../Player2/Player")
 		var direction = (player.position - self.position).normalized()
 		if direction.x > 0:
@@ -18,6 +19,7 @@ func _physics_process(delta):
 		velocity.x = direction.x * SPEED
 	else:
 		velocity.x = 0
+		get_node("AnimatedSprite2D").play("Idle")
 	move_and_slide()
 
 func _on_player_detection_body_entered(body):
