@@ -455,6 +455,21 @@ position = Vector2(56, 246)
 [node name="Frog" parent="Mobs" instance=ExtResource("5_ig1ne")]
 position = Vector2(455, 257)
 
+[node name="Frog2" parent="Mobs" instance=ExtResource("5_ig1ne")]
+position = Vector2(357, 242)
+
+[node name="Frog3" parent="Mobs" instance=ExtResource("5_ig1ne")]
+position = Vector2(617, 243)
+
+[node name="Frog4" parent="Mobs" instance=ExtResource("5_ig1ne")]
+position = Vector2(532, 262)
+
+[node name="Frog5" parent="Mobs" instance=ExtResource("5_ig1ne")]
+position = Vector2(718, 287)
+
+[node name="Frog6" parent="Mobs" instance=ExtResource("5_ig1ne")]
+position = Vector2(659, 320)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HP" type="Label" parent="UI"]
