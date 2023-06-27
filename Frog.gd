@@ -38,8 +38,18 @@ func _on_player_detection_body_exited(body):
 
 func _on_player_death_body_entered(body):
 	if body.name == "Player":
+		death()
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == "Player":
+		body.health -= 3
+		death()
+		
+func death():
 		dead = true
 		var animated_sprite = get_node("AnimatedSprite2D")
 		animated_sprite.play("Death")
 		await animated_sprite.animation_finished
 		self.queue_free()
+	

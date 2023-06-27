@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://boc3fc3oyvcp4"]
+[gd_scene load_steps=9 format=3 uid="uid://boc3fc3oyvcp4"]
 
 [ext_resource type="Texture2D" uid="uid://bod0hlx6n42qn" path="res://sunny-land-phaser-project/sunny-land/assets/environment/tileset.png" id="1_hvctj"]
 [ext_resource type="PackedScene" uid="uid://coxcfgdw21ckt" path="res://Player/Player.tscn" id="1_m1vn5"]
 [ext_resource type="Script" path="res://BG.gd" id="2_nu2wi"]
 [ext_resource type="Texture2D" uid="uid://xj5lsbed2kf0" path="res://Sunny-land-files/Sunny-land-assets-files/PNG/environment/layers/back.png" id="3_cv4si"]
 [ext_resource type="PackedScene" uid="uid://bv3f70qiji4fu" path="res://Frog.tscn" id="5_ig1ne"]
+[ext_resource type="Script" path="res://HP.gd" id="6_3pudo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kqups"]
 texture = ExtResource("1_hvctj")
@@ -453,3 +454,14 @@ position = Vector2(56, 246)
 
 [node name="Frog" parent="Mobs" instance=ExtResource("5_ig1ne")]
 position = Vector2(455, 257)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HP" type="Label" parent="UI"]
+offset_left = 14.0
+offset_top = 11.0
+offset_right = 136.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0.827451, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+script = ExtResource("6_3pudo")
