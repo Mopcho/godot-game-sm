@@ -43,11 +43,13 @@ func _on_player_death_body_entered(body):
 
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":
-		body.health -= 3
+		Game.playerHP -= 3
 		death()
 		
 func death():
 		dead = true
+		Game.playerGold += 5
+		Utils.saveGame()
 		var animated_sprite = get_node("AnimatedSprite2D")
 		animated_sprite.play("Death")
 		await animated_sprite.animation_finished

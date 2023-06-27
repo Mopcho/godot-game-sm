@@ -15,6 +15,11 @@ run/main_scene="res://main-scene.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*res://Global/Game.gd"
+Utils="*res://Global/Utils.gd"
+
 [dotnet]
 
 project/assembly_name="godot-game-sm"
