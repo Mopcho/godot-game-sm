@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://boc3fc3oyvcp4"]
+
+[node name="World" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 382.0
+offset_top = 202.0
+offset_right = 878.0
+offset_bottom = 347.0
+text = "This is the world scene"
