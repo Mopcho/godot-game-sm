@@ -151,9 +151,13 @@ size = Vector2(18, 20)
 size = Vector2(27, 12)
 
 [node name="Frog" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
 script = ExtResource("1_ato3f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 0
 position = Vector2(1.5, -8)
 shape = SubResource("RectangleShape2D_6ytci")
 
@@ -165,6 +169,7 @@ metadata/_edit_lock_ = true
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 visible = false
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 position = Vector2(0, -9)
@@ -172,18 +177,20 @@ shape = SubResource("CircleShape2D_ikp44")
 
 [node name="PlayerDeath" type="Area2D" parent="."]
 visible = false
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDeath"]
 position = Vector2(1, -10)
 shape = SubResource("RectangleShape2D_buw2o")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerDamage" type="Area2D" parent="."]
+collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDamage"]
 position = Vector2(1.5, -6)
 shape = SubResource("RectangleShape2D_sc6l2")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
 [connection signal="body_entered" from="PlayerDeath" to="." method="_on_player_death_body_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="PlayerDamage" to="." method="_on_player_damage_body_entered"]

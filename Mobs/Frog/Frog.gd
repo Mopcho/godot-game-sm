@@ -40,8 +40,7 @@ func _on_player_death_body_entered(body):
 	if body.name == "Player":
 		death()
 
-
-func _on_area_2d_body_entered(body):
+func _on_player_damage_body_entered(body):
 	if body.name == "Player":
 		Game.playerHP -= 3
 		death()
@@ -55,3 +54,6 @@ func death():
 		await animated_sprite.animation_finished
 		self.queue_free()
 	
+
+
+

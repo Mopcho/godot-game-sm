@@ -8,5 +8,5 @@ func _process(delta):
 		var frogScene = load("res://Mobs/Frog/Frog.tscn")
 		var frogInstance = frogScene.instantiate()
 		var randomX = rng.randf_range(25.0, 900)
-		frogInstance.set_position(Vector2(randomX, 352))
+		frogInstance.set_position(Vector2(40, 352))
 		add_child(frogInstance)

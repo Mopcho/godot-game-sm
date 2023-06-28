@@ -421,7 +421,7 @@ texture = ExtResource("1_r6m0h")
 15:21/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_ll5ph"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
 sources/1 = SubResource("TileSetAtlasSource_reswd")
 
 [node name="World" type="Node2D"]
