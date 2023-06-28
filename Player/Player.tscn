@@ -181,7 +181,7 @@ shape = SubResource("CapsuleShape2D_hvap7")
 position = Vector2(14, -29)
 sprite_frames = SubResource("SpriteFrames_u61fr")
 animation = &"Death"
-frame_progress = 0.998387
+frame_progress = 0.433359
 flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
