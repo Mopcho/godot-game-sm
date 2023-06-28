@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://boc3fc3oyvcp4"]
+[gd_scene load_steps=12 format=3 uid="uid://boc3fc3oyvcp4"]
 
 [ext_resource type="Texture2D" uid="uid://bod0hlx6n42qn" path="res://sunny-land-phaser-project/sunny-land/assets/environment/tileset.png" id="1_hvctj"]
 [ext_resource type="PackedScene" uid="uid://coxcfgdw21ckt" path="res://Player/Player.tscn" id="1_m1vn5"]
 [ext_resource type="Script" path="res://BG.gd" id="2_nu2wi"]
 [ext_resource type="Texture2D" uid="uid://xj5lsbed2kf0" path="res://Sunny-land-files/Sunny-land-assets-files/PNG/environment/layers/back.png" id="3_cv4si"]
+[ext_resource type="Script" path="res://Mobs.gd" id="5_beogl"]
 [ext_resource type="PackedScene" uid="uid://bv3f70qiji4fu" path="res://Frog.tscn" id="5_ig1ne"]
 [ext_resource type="Script" path="res://HP.gd" id="6_3pudo"]
 [ext_resource type="Script" path="res://GoldUI.gd" id="7_g5cyn"]
@@ -453,24 +454,25 @@ texture = ExtResource("3_cv4si")
 position = Vector2(56, 246)
 
 [node name="Mobs" type="Node2D" parent="."]
+script = ExtResource("5_beogl")
 
 [node name="Frog" parent="Mobs" instance=ExtResource("5_ig1ne")]
-position = Vector2(455, 257)
+position = Vector2(526, 352)
 
 [node name="Frog2" parent="Mobs" instance=ExtResource("5_ig1ne")]
-position = Vector2(357, 242)
+position = Vector2(461, 350)
 
 [node name="Frog3" parent="Mobs" instance=ExtResource("5_ig1ne")]
-position = Vector2(617, 243)
+position = Vector2(342, 351)
 
 [node name="Frog4" parent="Mobs" instance=ExtResource("5_ig1ne")]
-position = Vector2(532, 262)
+position = Vector2(610, 351)
 
 [node name="Frog5" parent="Mobs" instance=ExtResource("5_ig1ne")]
-position = Vector2(718, 287)
+position = Vector2(692, 349)
 
 [node name="Frog6" parent="Mobs" instance=ExtResource("5_ig1ne")]
-position = Vector2(659, 320)
+position = Vector2(799, 352)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
