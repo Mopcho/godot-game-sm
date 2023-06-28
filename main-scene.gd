@@ -3,7 +3,7 @@ extends Node2D
 func _ready():
 	Utils.loadGame()
 	if Game.playerHP <= 0:
-		Game.playerHP = 10
+		Game.playerHP = 1000
 	Utils.saveGame()
 
 func _on_quit_button_pressed():
