@@ -36,7 +36,7 @@ func _on_player_detection_body_exited(body):
 		chase = false
 		
 
-func die():
+func death():
 	dead = true
 	Game.playerGold += 5
 	Utils.saveGame()
@@ -49,11 +49,13 @@ func die():
 
 func _on_player_death_body_entered(body):
 	if body.name == "Player":
-		die()
+		death()
 
 
 func _on_player_damage_body_entered(body):
 	if body.name == "Player":
 		Game.playerHP -= 6
-		die()
+		death()
+		
+
 
