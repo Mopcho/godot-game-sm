@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://s1moeu365vur"]
+[gd_scene load_steps=41 format=3 uid="uid://s1moeu365vur"]
 
 [ext_resource type="Script" path="res://Mobs/SkeletonWarrior/SkeletonWarrior.gd" id="1_14jib"]
 [ext_resource type="Texture2D" uid="uid://drdttkb047rpw" path="res://Public/SkeletonPack/Skeleton_Warrior/Dead.png" id="2_gr421"]
@@ -239,21 +239,6 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
-[sub_resource type="Animation" id="Animation_kxxu3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
 [sub_resource type="Animation" id="Animation_ruieb"]
 resource_name = "Idle"
 length = 0.7
@@ -280,6 +265,21 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_kxxu3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_0atxq"]
@@ -310,17 +310,46 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_njmu4"]
+resource_name = "Death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tn18g"]
 _data = {
 "Attack": SubResource("Animation_8jiun"),
+"Death": SubResource("Animation_njmu4"),
 "Idle": SubResource("Animation_ruieb"),
 "RESET": SubResource("Animation_kxxu3"),
 "Run": SubResource("Animation_0atxq")
 }
 
-[node name="SkeletonWarrior" type="CharacterBody2D"]
+[node name="SkeletonWarrior" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 8
-collision_mask = 7
+collision_mask = 71
 script = ExtResource("1_14jib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -331,7 +360,7 @@ shape = SubResource("CapsuleShape2D_ccslg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -64)
 sprite_frames = SubResource("SpriteFrames_d45rq")
-animation = &"Attack"
+animation = &"Death"
 frame = 1
 metadata/_edit_lock_ = true
 
