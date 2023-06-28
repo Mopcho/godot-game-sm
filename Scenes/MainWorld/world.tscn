@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://boc3fc3oyvcp4"]
+[gd_scene load_steps=13 format=3 uid="uid://boc3fc3oyvcp4"]
 
 [ext_resource type="Texture2D" uid="uid://ig334nugs0an" path="res://Public/Sunny-land-files/Sunny-land-assets-files/PNG/environment/layers/tileset.png" id="1_r6m0h"]
 [ext_resource type="Script" path="res://BG.gd" id="2_bwogq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://UI/HP.gd" id="7_08ft8"]
 [ext_resource type="Script" path="res://UI/GoldUI.gd" id="8_tn1ev"]
 [ext_resource type="Script" path="res://Scenes/MainWorld/Collectables.gd" id="9_2yh63"]
+[ext_resource type="PackedScene" uid="uid://b8wmve8lj06s1" path="res://Mobs/Opposum/Opposum.tscn" id="10_26apo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_reswd"]
 texture = ExtResource("1_r6m0h")
@@ -494,5 +495,11 @@ script = ExtResource("9_2yh63")
 
 [node name="Timer" type="Timer" parent="Collectables"]
 autostart = true
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("10_26apo")]
+position = Vector2(884, 349)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("10_26apo")]
+position = Vector2(281, 350)
 
 [connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]
