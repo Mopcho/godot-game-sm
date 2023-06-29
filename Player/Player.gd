@@ -13,7 +13,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim = get_node("AnimatedSprite2D")
 
 func _ready():
-	Game.player = self
+	Player.player = self
+	Player.calculate_player_health()
 	
 func flip_to_mouse():
 	var is_looking_right = get_global_mouse_position().x < self.position.x
@@ -62,7 +63,8 @@ func _physics_process(delta):
 	if velocity.y > 0:
 		anim.play("Fall")
 	move_and_slide()
-	
-	if Game.playerHP <= 0:
+
+	if Player.health <= 0:
 		queue_free()
+		Player.health = Player.calculate_player_health()
 		get_tree().change_scene_to_file("res://main-scene.tscn")

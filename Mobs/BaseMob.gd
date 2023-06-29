@@ -25,7 +25,7 @@ func _physics_process(delta):
 	update_health()
 	
 	if chase && !dead:
-		var player = Game.player
+		var player = Player.player
 		var direction = (player.position - self.position).normalized()
 		if direction.x > 0:
 			get_node("AnimatedSprite2D").flip_h = first_flip_h
@@ -38,12 +38,12 @@ func _physics_process(delta):
 		move_and_slide()
 	
 func deal_damage(damage):
-	Game.playerHP -= damage
+	Player.health -= damage
 
 # death
 func death():
 	await before_death()
-	Game.playerGold += gold_drop
+	Player.gold += gold_drop
 	Utils.saveGame()
 	self.queue_free()
 	

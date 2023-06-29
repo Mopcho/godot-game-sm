@@ -45,7 +45,7 @@ func _on_player_damage_body_exited(body):
 		
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Attack":
-		Game.playerHP -= damage
+		Player.health -= damage
 		if attacking:
 			animationPlayer.play("Attack")
 
