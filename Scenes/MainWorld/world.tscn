@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://boc3fc3oyvcp4"]
+[gd_scene load_steps=12 format=3 uid="uid://boc3fc3oyvcp4"]
 
 [ext_resource type="Texture2D" uid="uid://ig334nugs0an" path="res://Public/Sunny-land-files/Sunny-land-assets-files/PNG/environment/layers/tileset.png" id="1_r6m0h"]
 [ext_resource type="Script" path="res://BG.gd" id="2_bwogq"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://UI/HP.gd" id="7_08ft8"]
 [ext_resource type="Script" path="res://UI/GoldUI.gd" id="8_tn1ev"]
 [ext_resource type="Script" path="res://Scenes/MainWorld/Collectables.gd" id="9_2yh63"]
-[ext_resource type="PackedScene" uid="uid://b8wmve8lj06s1" path="res://Mobs/Opposum/Opposum.tscn" id="10_26apo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_reswd"]
 texture = ExtResource("1_r6m0h")
@@ -514,29 +513,23 @@ position = Vector2(56, 246)
 [node name="Mobs" type="Node2D" parent="."]
 script = ExtResource("5_4jrf8")
 
-[node name="Frog" parent="Mobs" instance=ExtResource("6_t380r")]
+[node name="SkelletonWarrior" parent="Mobs" instance=ExtResource("6_t380r")]
 position = Vector2(873, 357)
 
-[node name="Frog2" parent="Mobs" instance=ExtResource("6_t380r")]
+[node name="SkelletonWarrior2" parent="Mobs" instance=ExtResource("6_t380r")]
 position = Vector2(787, 357)
 
-[node name="Frog3" parent="Mobs" instance=ExtResource("6_t380r")]
+[node name="SkelletonWarrior3" parent="Mobs" instance=ExtResource("6_t380r")]
 position = Vector2(950, 356)
 
-[node name="Frog4" parent="Mobs" instance=ExtResource("6_t380r")]
+[node name="SkelletonWarrior4" parent="Mobs" instance=ExtResource("6_t380r")]
 position = Vector2(1140, 304)
 
-[node name="Frog5" parent="Mobs" instance=ExtResource("6_t380r")]
+[node name="SkelletonWarrior5" parent="Mobs" instance=ExtResource("6_t380r")]
 position = Vector2(1311, 305)
 
-[node name="Frog6" parent="Mobs" instance=ExtResource("6_t380r")]
+[node name="SkelletonWarrior6" parent="Mobs" instance=ExtResource("6_t380r")]
 position = Vector2(1580, 303)
-
-[node name="CharacterBody2D" parent="Mobs" instance=ExtResource("10_26apo")]
-position = Vector2(560, 340)
-
-[node name="CharacterBody2D2" parent="Mobs" instance=ExtResource("10_26apo")]
-position = Vector2(1406, 288)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

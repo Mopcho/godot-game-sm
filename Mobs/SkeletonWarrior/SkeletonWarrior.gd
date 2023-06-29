@@ -45,11 +45,6 @@ func _on_animation_player_animation_finished(anim_name):
 		if attacking:
 			animationPlayer.play("Attack")
 
-	
-	
-
-
-
 func _on_player_max_chase_zone_body_exited(body):
 	if body.name == "Player":
 		chase = false
