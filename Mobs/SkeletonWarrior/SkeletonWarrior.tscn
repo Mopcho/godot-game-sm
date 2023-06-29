@@ -349,7 +349,7 @@ _data = {
 
 [node name="SkeletonWarrior" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 8
-collision_mask = 71
+collision_mask = 67
 script = ExtResource("1_14jib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
