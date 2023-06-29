@@ -32,7 +32,8 @@ func _physics_process(delta):
 		velocity.x = direction.x * speed
 	elif !dead:
 		velocity.x = 0
-	move_and_slide()
+	if !dead:
+		move_and_slide()
 	
 func deal_damage(damage):
 	Game.playerHP -= damage
