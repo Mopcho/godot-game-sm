@@ -5,7 +5,8 @@ class_name BaseMob
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var level = 1
-var health = 10
+var health = 40
+var max_health = 40
 var damage = 10
 var gold_drop = 10
 var dead = false
@@ -21,6 +22,7 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
+	update_health()
 	
 	if chase && !dead:
 		var player = Game.player
@@ -49,9 +51,15 @@ func before_death():
 	dead = true
 	attacking = false
 	
+func update_health():
+	var healthBar: TextureProgressBar = get_node("HealthBar")
+	healthBar.max_value = max_health
+	healthBar.value = health
+	
 func take_damage(damage):
 	health -= damage
 	if health <= 0:
 		death()
+
 
 # TODO: Callback, _physics_process, chasing player

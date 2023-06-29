@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8wmve8lj06s1"]
+[gd_scene load_steps=20 format=3 uid="uid://b8wmve8lj06s1"]
 
 [ext_resource type="Script" path="res://Mobs/Opposum/Opposum.gd" id="1_7tr7t"]
 [ext_resource type="Texture2D" uid="uid://bbbw8w6g8c6kg" path="res://Public/Sunny-land-files/Sunny-land-assets-files/PNG/sprites/opossum/opossum-1.png" id="1_w7wuc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b61642jq2hx7u" path="res://Public/Sunny-land-files/Sunny-land-assets-files/PNG/sprites/enemy-death/enemy-death-5.png" id="6_hm4ul"]
 [ext_resource type="Texture2D" uid="uid://dajjwr0i4snvt" path="res://Public/Sunny-land-files/Sunny-land-assets-files/PNG/sprites/opossum/opossum-5.png" id="6_skfwd"]
 [ext_resource type="Texture2D" uid="uid://bmahu2l4wi284" path="res://Public/Sunny-land-files/Sunny-land-assets-files/PNG/sprites/enemy-death/enemy-death-6.png" id="7_624fp"]
+[ext_resource type="PackedScene" uid="uid://xu720quq0a37" path="res://UI/GeneralHealthBar.tscn" id="14_4wqfb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_in735"]
 size = Vector2(29, 23.8983)
@@ -130,6 +131,12 @@ position = Vector2(2.5, 0.5)
 rotation = -3.14159
 scale = Vector2(1.97809, -1)
 shape = SubResource("RectangleShape2D_u4gof")
+
+[node name="HealthBar" parent="." instance=ExtResource("14_4wqfb")]
+offset_left = -38.0
+offset_top = -18.0
+offset_right = 162.0
+offset_bottom = 4.0
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

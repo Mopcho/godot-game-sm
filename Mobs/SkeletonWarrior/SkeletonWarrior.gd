@@ -5,6 +5,7 @@ var animationPlayer: AnimationPlayer
 func _ready():
 	level = 2
 	health = 20
+	max_health = 20
 	speed = 100
 	animationPlayer = get_node("AnimationPlayer")
 	animationPlayer.play("Idle")

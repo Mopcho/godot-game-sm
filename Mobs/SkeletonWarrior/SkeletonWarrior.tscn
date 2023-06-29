@@ -1,10 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://s1moeu365vur"]
+[gd_scene load_steps=42 format=3 uid="uid://s1moeu365vur"]
 
 [ext_resource type="Script" path="res://Mobs/SkeletonWarrior/SkeletonWarrior.gd" id="1_14jib"]
 [ext_resource type="Texture2D" uid="uid://drdttkb047rpw" path="res://Public/SkeletonPack/Skeleton_Warrior/Dead.png" id="2_gr421"]
 [ext_resource type="Texture2D" uid="uid://dxu5ivllnvek1" path="res://Public/SkeletonPack/Skeleton_Warrior/Attack_1.png" id="2_ylt1t"]
 [ext_resource type="Texture2D" uid="uid://4hc81k521sm1" path="res://Public/SkeletonPack/Skeleton_Warrior/Idle.png" id="3_hf2e6"]
 [ext_resource type="Texture2D" uid="uid://0kdjfpvps3c2" path="res://Public/SkeletonPack/Skeleton_Warrior/Run.png" id="4_pdr4b"]
+[ext_resource type="PackedScene" uid="uid://xu720quq0a37" path="res://UI/GeneralHealthBar.tscn" id="6_k703d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccslg"]
 radius = 12.0
@@ -394,6 +395,13 @@ shape = SubResource("RectangleShape2D_sc6l2")
 libraries = {
 "": SubResource("AnimationLibrary_tn18g")
 }
+
+[node name="HealthBar" parent="." instance=ExtResource("6_k703d")]
+offset_left = -55.0
+offset_top = -88.0
+offset_right = 145.0
+offset_bottom = -66.0
+scale = Vector2(0.559, 0.3)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]

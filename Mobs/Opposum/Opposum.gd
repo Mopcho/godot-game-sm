@@ -4,7 +4,8 @@ var animatedSprite
 
 # On Ready set constants
 func _ready():
-	health = 20
+	health = 50
+	max_health = 50
 	gold_drop = 10
 	speed = 200
 	level = 1
