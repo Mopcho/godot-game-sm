@@ -187,12 +187,12 @@ frame_progress = 0.312833
 metadata/_edit_lock_ = true
 
 [node name="MarkerController" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="ShootingMarker" type="Marker2D" parent="MarkerController"]
 position = Vector2(27, -1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(14, -27)
 zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_top = 0
