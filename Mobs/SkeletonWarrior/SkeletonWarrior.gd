@@ -34,7 +34,6 @@ func _on_player_detection_body_exited(body):
 		chase = false
 
 func _on_player_damage_body_entered(body):
-	print("Here")
 	if body.name == "Player":
 		attacking = true
 		animationPlayer.play("Attack")
