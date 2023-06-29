@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://s1moeu365vur"]
+[gd_scene load_steps=43 format=3 uid="uid://s1moeu365vur"]
 
 [ext_resource type="Script" path="res://Mobs/SkeletonWarrior/SkeletonWarrior.gd" id="1_14jib"]
 [ext_resource type="Texture2D" uid="uid://drdttkb047rpw" path="res://Public/SkeletonPack/Skeleton_Warrior/Dead.png" id="2_gr421"]
@@ -348,6 +348,9 @@ _data = {
 "Run": SubResource("Animation_0atxq")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_axjqx"]
+radius = 821.001
+
 [node name="SkeletonWarrior" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 8
 collision_mask = 67
@@ -384,6 +387,7 @@ position = Vector2(1, -28)
 shape = SubResource("CapsuleShape2D_38prp")
 
 [node name="PlayerDamage" type="Area2D" parent="."]
+visible = false
 collision_mask = 4
 metadata/_edit_lock_ = true
 
@@ -403,9 +407,14 @@ offset_right = 145.0
 offset_bottom = -66.0
 scale = Vector2(0.559, 0.3)
 
+[node name="PlayerMaxChaseZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMaxChaseZone"]
+shape = SubResource("CircleShape2D_axjqx")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
-[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
 [connection signal="body_entered" from="PlayerDamage" to="." method="_on_player_damage_body_entered"]
 [connection signal="body_exited" from="PlayerDamage" to="." method="_on_player_damage_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_exited" from="PlayerMaxChaseZone" to="." method="_on_player_max_chase_zone_body_exited"]

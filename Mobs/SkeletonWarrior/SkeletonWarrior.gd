@@ -30,10 +30,6 @@ func _on_player_detection_body_entered(body):
 	if body.name == "Player":
 		chase = true
 
-func _on_player_detection_body_exited(body):
-	if body.name == "Player":
-		chase = false
-
 func _on_player_damage_body_entered(body):
 	if body.name == "Player":
 		attacking = true
@@ -52,3 +48,8 @@ func _on_animation_player_animation_finished(anim_name):
 	
 	
 
+
+
+func _on_player_max_chase_zone_body_exited(body):
+	if body.name == "Player":
+		chase = false

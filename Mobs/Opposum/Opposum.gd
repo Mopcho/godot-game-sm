@@ -33,14 +33,11 @@ func _on_player_detection_body_entered(body):
 	if body.name == "Player":
 		chase = true
 		# TODO: set chasing_player
-		
-func _on_player_detection_body_exited(body):
-	if body.name == "Player":
-		chase = false
-		# TODO: unset chasing_player
 
 func _on_player_damage_body_entered(body):
 	if body.name == "Player":
 		deal_damage(5)
 
-
+func _on_player_max_chase_zone_body_exited(body):
+	if body.name == "Player":
+		chase = false
