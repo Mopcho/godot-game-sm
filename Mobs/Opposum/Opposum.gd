@@ -38,13 +38,8 @@ func _on_player_detection_body_exited(body):
 		chase = false
 		# TODO: unset chasing_player
 
-func _on_player_death_body_entered(body):
-	if body.name == "Player":
-		death()
-
 func _on_player_damage_body_entered(body):
 	if body.name == "Player":
 		deal_damage(5)
-		death()
 
 
