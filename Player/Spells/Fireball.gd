@@ -7,7 +7,7 @@ func _physics_process(delta):
 	move_and_collide(new_velocity.normalized() * delta * speed)
 
 func _on_deal_damage_body_entered(body):
-	if body.is_in_group("mobs"):	
-		body.death()
+	if body.is_in_group("mobs"):
+		body.take_damage(10)
 	queue_free()
 

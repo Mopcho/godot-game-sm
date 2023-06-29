@@ -501,9 +501,9 @@ script = ExtResource("9_2yh63")
 autostart = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("10_26apo")]
-position = Vector2(884, 349)
+position = Vector2(882, 338)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("10_26apo")]
-position = Vector2(281, 350)
+position = Vector2(283, 337)
 
 [connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]

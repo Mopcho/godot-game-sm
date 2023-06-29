@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bmahu2l4wi284" path="res://Public/Sunny-land-files/Sunny-land-assets-files/PNG/sprites/enemy-death/enemy-death-6.png" id="7_624fp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_in735"]
-size = Vector2(29, 19.5)
+size = Vector2(29, 23.8983)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_632gf"]
 animations = [{
@@ -81,10 +81,10 @@ animations = [{
 radius = 205.002
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gxmj"]
-size = Vector2(30, 21)
+size = Vector2(12.2444, 19.0047)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4gof"]
-size = Vector2(34.5, 18)
+size = Vector2(15.6717, 23)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 8
@@ -93,13 +93,14 @@ script = ExtResource("1_7tr7t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(1, -10.25)
+position = Vector2(1, 0.999999)
+scale = Vector2(0.960159, 0.920566)
 shape = SubResource("RectangleShape2D_in735")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, -14)
 sprite_frames = SubResource("SpriteFrames_632gf")
 animation = &"Idle"
+flip_h = true
 metadata/_edit_lock_ = true
 
 [node name="PlayerDetection" type="Area2D" parent="."]
@@ -112,18 +113,22 @@ shape = SubResource("CircleShape2D_vy8mv")
 
 [node name="PlayerDeath" type="Area2D" parent="."]
 visible = false
+scale = Vector2(3.55361, 1.4796)
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDeath"]
-position = Vector2(1, -11.5)
+position = Vector2(0.703509, -2.36394e-07)
+rotation = -3.14159
+scale = Vector2(0.712451, 0.853508)
 shape = SubResource("RectangleShape2D_6gxmj")
 
 [node name="PlayerDamage" type="Area2D" parent="."]
-visible = false
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDamage"]
-position = Vector2(0.75, -10)
+position = Vector2(2.5, 0.5)
+rotation = -3.14159
+scale = Vector2(1.97809, -1)
 shape = SubResource("RectangleShape2D_u4gof")
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]

@@ -1,35 +1,29 @@
-extends CharacterBody2D
+extends BaseMob
 
-var damage = 5
-var SPEED = 70
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var player
-var chase = false
-var dead = false
-var attacking = false
-var playingOtherAnimation = false
 var animationPlayer: AnimationPlayer
 
 func _ready():
+	level = 2
+	health = 20
+	speed = 100
 	animationPlayer = get_node("AnimationPlayer")
 	animationPlayer.play("Idle")
+	super()
 
 func _physics_process(delta):
-	velocity.y += gravity * delta
+	super(delta)
 	
-	if chase && !dead && !attacking:
-		var player = Game.player
+	if dead || attacking:
+		return
+	elif chase:
 		animationPlayer.play("Run")
-		var direction = (player.position - self.position).normalized()
-		if direction.x > 0:
-			get_node("AnimatedSprite2D").flip_h = false
-		else:
-			get_node("AnimatedSprite2D").flip_h = true
-		velocity.x = direction.x * SPEED
-	elif !dead && !attacking:
-		velocity.x = 0
+	else:
 		animationPlayer.play("Idle")
-	move_and_slide()
+
+func before_death():
+	super()
+	animationPlayer.play("Death")
+	await animationPlayer.animation_finished
 
 func _on_player_detection_body_entered(body):
 	if body.name == "Player":
@@ -40,6 +34,7 @@ func _on_player_detection_body_exited(body):
 		chase = false
 
 func _on_player_damage_body_entered(body):
+	print("Here")
 	if body.name == "Player":
 		attacking = true
 		animationPlayer.play("Attack")
@@ -53,13 +48,7 @@ func _on_animation_player_animation_finished(anim_name):
 		Game.playerHP -= damage
 		if attacking:
 			animationPlayer.play("Attack")
-			
-func death():
-	dead = true
-	Game.playerGold += 5
-	Utils.saveGame()
-	animationPlayer.play("Death")
-	await animationPlayer.animation_finished
-	self.queue_free()
+
+	
 	
 
