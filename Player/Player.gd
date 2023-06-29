@@ -22,6 +22,7 @@ func flip_to_mouse():
 func shoot():
 	var bulletInstance = bullet.instantiate()
 	bulletInstance.position = get_node("MarkerController/ShootingMarker").global_position
+	bulletInstance.look_at(get_global_mouse_position())
 	bulletInstance.new_velocity = get_global_mouse_position() - bulletInstance.position
 	
 	get_tree().get_root().add_child(bulletInstance)
