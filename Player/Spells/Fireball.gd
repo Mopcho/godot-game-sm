@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var new_velocity = Vector2(0, 0)
 var speed = 300
-var collided
+var collided = false
 
 func _physics_process(delta):
 	if !collided:
