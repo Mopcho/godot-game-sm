@@ -445,7 +445,7 @@ shape = SubResource("CapsuleShape2D_ccslg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -64)
 sprite_frames = SubResource("SpriteFrames_d45rq")
-animation = &"Walk"
+animation = &"Attack"
 frame = 1
 metadata/_edit_lock_ = true
 
@@ -453,9 +453,6 @@ metadata/_edit_lock_ = true
 libraries = {
 "": SubResource("AnimationLibrary_tn18g")
 }
-
-[node name="HealthComponent" parent="." instance=ExtResource("7_yvi6u")]
-max_health = 20
 
 [node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_djjn1")]
 health_component = NodePath("../HealthComponent")
@@ -477,15 +474,16 @@ scale = Vector2(0.5, 0.367)
 texture_progress = ExtResource("9_q1yc6")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_ptnyv")]
-initial_state = NodePath("EnemyFollow")
+initial_state = NodePath("Idle")
 
-[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("10_sl4l1")
 enemy = NodePath("../..")
 
-[node name="EnemyFollow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("13_i8nxn")
 enemy = NodePath("../..")
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[node name="HealthComponent" parent="." instance=ExtResource("7_yvi6u")]
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

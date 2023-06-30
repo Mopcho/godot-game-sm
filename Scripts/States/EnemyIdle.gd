@@ -3,6 +3,8 @@ class_name EnemyIdle
 
 @export var enemy: CharacterBody2D
 @export var move_speed := 20
+@export var start_chase_distance := 200
+var player: CharacterBody2D
 
 var move_direction
 var wander_time: float
@@ -13,6 +15,7 @@ func randomize_wander():
 	
 func Enter():
 	randomize_wander()
+	player = get_tree().get_first_node_in_group("player")
 
 func Update(delta: float):
 	if wander_time > 0:
@@ -23,6 +26,9 @@ func Update(delta: float):
 func Physics_Update(delta: float):
 	if enemy:
 		enemy.velocity.x = move_direction * move_speed
+	var direction = player.global_position - enemy.global_position
+	if direction.length() <= start_chase_distance:
+		Transition.emit(self, "Follow")
 	
 
 
