@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://Scripts/States/EnemyChase.gd" id="13_i8nxn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccslg"]
-radius = 12.0
 height = 56.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sxd1f"]
@@ -438,7 +437,6 @@ collision_mask = 3
 script = ExtResource("1_14jib")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(2, -27)
 shape = SubResource("CapsuleShape2D_ccslg")
 
@@ -455,7 +453,9 @@ libraries = {
 }
 
 [node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_djjn1")]
+visible = false
 health_component = NodePath("../HealthComponent")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(3, -30)
@@ -474,6 +474,7 @@ scale = Vector2(0.5, 0.367)
 texture_progress = ExtResource("9_q1yc6")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_ptnyv")]
+visible = false
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
@@ -485,5 +486,6 @@ script = ExtResource("13_i8nxn")
 enemy = NodePath("../..")
 
 [node name="HealthComponent" parent="." instance=ExtResource("7_yvi6u")]
+visible = false
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
