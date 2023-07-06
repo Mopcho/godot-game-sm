@@ -49,12 +49,11 @@ jump={
 
 [layer_names]
 
-2d_physics/layer_1="Default"
-2d_physics/layer_2="Walls"
-2d_physics/layer_3="Players"
-2d_physics/layer_4="Enemies"
+2d_physics/layer_1="Wall"
+2d_physics/layer_2="PLayer"
+2d_physics/layer_3="Enemy_Mob"
+2d_physics/layer_4="Player_Attack"
 2d_physics/layer_5="Consumables"
-2d_physics/layer_7="Shootin_Particles"
 
 [rendering]
 

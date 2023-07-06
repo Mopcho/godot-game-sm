@@ -7,11 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://0kdjfpvps3c2" path="res://Public/SkeletonPack/Skeleton_Warrior/Run.png" id="4_pdr4b"]
 [ext_resource type="Texture2D" uid="uid://cec1vju11vxwd" path="res://Public/SkeletonPack/Skeleton_Warrior/Walk.png" id="6_opa4l"]
 [ext_resource type="PackedScene" uid="uid://cu8kurfiuxyob" path="res://Components/HealthComponent/health_component.tscn" id="7_yvi6u"]
-[ext_resource type="PackedScene" uid="uid://dca5x0c547r10" path="res://Components/HitBoxComponent/hit_box_component.tscn" id="8_djjn1"]
 [ext_resource type="PackedScene" uid="uid://c4ga5rn2h4fw2" path="res://Components/HealthBarComponent/health_bar_component.tscn" id="8_n10g6"]
 [ext_resource type="Texture2D" uid="uid://diga3yyg7uops" path="res://Public/Solid_red.png" id="9_q1yc6"]
 [ext_resource type="PackedScene" uid="uid://dbryelnwvi64w" path="res://Scripts/States/state_machine.tscn" id="10_ptnyv"]
 [ext_resource type="Script" path="res://Scripts/States/EnemyIdle.gd" id="10_sl4l1"]
+[ext_resource type="Script" path="res://Components/HitBoxComponent/HitBoxComponent.gd" id="13_aat5y"]
 [ext_resource type="Script" path="res://Scripts/States/EnemyChase.gd" id="13_i8nxn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccslg"]
@@ -427,23 +427,23 @@ _data = {
 "Walk": SubResource("Animation_w3i2t")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m0k4t"]
-radius = 13.0
-height = 60.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_832h0"]
+radius = 9.94588
+height = 88.4448
 
 [node name="SkeletonWarrior" type="CharacterBody2D" groups=["mobs"]]
-collision_layer = 8
-collision_mask = 3
+collision_layer = 4
 script = ExtResource("1_14jib")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(2, -27)
 shape = SubResource("CapsuleShape2D_ccslg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -64)
 sprite_frames = SubResource("SpriteFrames_d45rq")
-animation = &"Attack"
+animation = &"Idle"
 frame = 1
 metadata/_edit_lock_ = true
 
@@ -451,15 +451,6 @@ metadata/_edit_lock_ = true
 libraries = {
 "": SubResource("AnimationLibrary_tn18g")
 }
-
-[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_djjn1")]
-visible = false
-health_component = NodePath("../HealthComponent")
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-position = Vector2(3, -30)
-shape = SubResource("CapsuleShape2D_m0k4t")
 
 [node name="HealthBarComponent" parent="." node_paths=PackedStringArray("texture_progress_bar", "health_component") instance=ExtResource("8_n10g6")]
 texture_progress_bar = NodePath("TextureProgressBar")
@@ -474,7 +465,6 @@ scale = Vector2(0.5, 0.367)
 texture_progress = ExtResource("9_q1yc6")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_ptnyv")]
-visible = false
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
@@ -484,8 +474,22 @@ enemy = NodePath("../..")
 [node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("13_i8nxn")
 enemy = NodePath("../..")
+stop_chase_distance = 1000
 
 [node name="HealthComponent" parent="." instance=ExtResource("7_yvi6u")]
-visible = false
+
+[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "stateMachine")]
+scale = Vector2(1.27609, 1)
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("13_aat5y")
+health_component = NodePath("../HealthComponent")
+stateMachine = NodePath("../StateMachine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(3, -29)
+scale = Vector2(-1.09296, 0.634199)
+shape = SubResource("CapsuleShape2D_832h0")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="HitBoxComponent" to="HitBoxComponent" method="_on_body_entered"]

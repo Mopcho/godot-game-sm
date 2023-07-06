@@ -12,7 +12,6 @@ func _physics_process(delta):
 func _on_deal_damage_body_entered(body):
 	var hitBoxComponent = body.get_node("HitBoxComponent")
 	if body.is_in_group("mobs") and hitBoxComponent:
-		print("Attack")
 		hitBoxComponent.damage(10)
 	collided = true
 	var anim_player = get_node("AnimationPlayer")
