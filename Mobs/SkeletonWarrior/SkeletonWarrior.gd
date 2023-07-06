@@ -1,8 +1,17 @@
 extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var animationSprite
+var animationPlayer
+var dead = false
+
+func _ready():
+	animationSprite = get_node("AnimatedSprite2D")
+	animationPlayer = get_node("AnimationPlayer")
 
 func _physics_process(delta):
+	if dead:
+		return
 	move_and_slide()
 	
 	velocity.y += gravity * delta
@@ -10,13 +19,19 @@ func _physics_process(delta):
 	var absVelocityX = abs(velocity.x)
 
 	if absVelocityX > 50:
-		get_node("AnimatedSprite2D").play("Run")
+		animationSprite.play("Run")
 	elif absVelocityX <= 50:
-		get_node("AnimatedSprite2D").play("Walk")
+		animationSprite.play("Walk")
 	else:
-		get_node("AnimatedSprite2D").play("Idle")
+		animationSprite.play("Idle")
 	
 	if velocity.x > 0:
-		get_node("AnimatedSprite2D").flip_h = false
+		animationSprite.flip_h = false
 	else:
-		get_node("AnimatedSprite2D").flip_h = true
+		animationSprite.flip_h = true
+		
+func on_death():
+	dead = true
+	animationSprite.play("Death")
+	await animationSprite.animation_finished
+	queue_free()

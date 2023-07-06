@@ -432,18 +432,18 @@ radius = 9.94588
 height = 88.4448
 
 [node name="SkeletonWarrior" type="CharacterBody2D" groups=["mobs"]]
+scale = Vector2(0.993747, 1)
 collision_layer = 4
 script = ExtResource("1_14jib")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(2, -27)
 shape = SubResource("CapsuleShape2D_ccslg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -64)
 sprite_frames = SubResource("SpriteFrames_d45rq")
-animation = &"Idle"
+animation = &"Attack"
 frame = 1
 metadata/_edit_lock_ = true
 
@@ -491,5 +491,4 @@ position = Vector2(3, -29)
 scale = Vector2(-1.09296, 0.634199)
 shape = SubResource("CapsuleShape2D_832h0")
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="HitBoxComponent" to="HitBoxComponent" method="_on_body_entered"]
