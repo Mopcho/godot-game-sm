@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var animationSprite
-var animationPlayer
+var animationSprite: AnimatedSprite2D
+var animationPlayer: AnimationPlayer
 var dead = false
 
 func _ready():
