@@ -12,4 +12,4 @@ func _process(delta):
 		texture_progress_bar.value = health_component.health
 	elif progress_bar:
 		progress_bar.max_value = health_component.max_health
-		progress_bar.value = health_component.healthW
+		progress_bar.value = health_component.health

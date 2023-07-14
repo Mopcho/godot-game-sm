@@ -16,15 +16,6 @@ func _physics_process(delta):
 	
 	velocity.y += gravity * delta
 	
-	var absVelocityX = abs(velocity.x)
-
-	if absVelocityX > 50:
-		animationSprite.play("Run")
-	elif absVelocityX <= 50:
-		animationSprite.play("Walk")
-	else:
-		animationSprite.play("Idle")
-	
 	if velocity.x > 0:
 		animationSprite.flip_h = false
 	else:

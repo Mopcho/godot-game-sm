@@ -64,7 +64,8 @@ func _physics_process(delta):
 		anim.play("Fall")
 	move_and_slide()
 
-	if Player.health <= 0:
-		queue_free()
-		Player.health = Player.calculate_player_health()
-		get_tree().change_scene_to_file("res://main-scene.tscn")
+		
+func on_death():
+	queue_free()
+	Player.health = 50
+	get_tree().change_scene_to_file("res://main-scene.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://s1moeu365vur"]
+[gd_scene load_steps=56 format=3 uid="uid://s1moeu365vur"]
 
 [ext_resource type="Script" path="res://Mobs/SkeletonWarrior/SkeletonWarrior.gd" id="1_14jib"]
 [ext_resource type="Texture2D" uid="uid://drdttkb047rpw" path="res://Public/SkeletonPack/Skeleton_Warrior/Dead.png" id="2_gr421"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://diga3yyg7uops" path="res://Public/Solid_red.png" id="9_q1yc6"]
 [ext_resource type="PackedScene" uid="uid://dbryelnwvi64w" path="res://Scripts/States/state_machine.tscn" id="10_ptnyv"]
 [ext_resource type="Script" path="res://Scripts/States/EnemyIdle.gd" id="10_sl4l1"]
+[ext_resource type="Script" path="res://Scripts/States/EnemyAttack.gd" id="12_kqn0d"]
 [ext_resource type="Script" path="res://Components/HitBoxComponent/HitBoxComponent.gd" id="13_aat5y"]
 [ext_resource type="Script" path="res://Scripts/States/EnemyChase.gd" id="13_i8nxn"]
 
@@ -202,7 +203,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1whk0")
 }],
-"loop": false,
+"loop": true,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -443,7 +444,7 @@ shape = SubResource("CapsuleShape2D_ccslg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -64)
 sprite_frames = SubResource("SpriteFrames_d45rq")
-animation = &"Attack"
+animation = &"Idle"
 frame = 1
 metadata/_edit_lock_ = true
 
@@ -467,14 +468,21 @@ texture_progress = ExtResource("9_q1yc6")
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_ptnyv")]
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "animation_sprite_2d")]
 script = ExtResource("10_sl4l1")
 enemy = NodePath("../..")
+animation_sprite_2d = NodePath("../../AnimatedSprite2D")
 
-[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "animation_sprite_2d")]
 script = ExtResource("13_i8nxn")
 enemy = NodePath("../..")
 stop_chase_distance = 1000
+animation_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player", "enemy")]
+script = ExtResource("12_kqn0d")
+animation_player = NodePath("../../AnimationPlayer")
+enemy = NodePath("../..")
 
 [node name="HealthComponent" parent="." instance=ExtResource("7_yvi6u")]
 
