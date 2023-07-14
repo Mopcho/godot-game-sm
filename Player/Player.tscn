@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://coxcfgdw21ckt"]
+[gd_scene load_steps=36 format=3 uid="uid://coxcfgdw21ckt"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_t1lsd"]
 [ext_resource type="Texture2D" uid="uid://culoon786luqa" path="res://Public/WizardPack/Fire vizard/Death/sprite (1).png" id="2_3tm0v"]
@@ -23,6 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://bixnpgypokv6e" path="res://Public/WizardPack/Fire vizard/Run/sprite (8).png" id="12_25g0x"]
 [ext_resource type="Texture2D" uid="uid://c3sn387uxopff" path="res://Public/WizardPack/Fire vizard/Run/sprite (9).png" id="13_u4oa2"]
 [ext_resource type="Texture2D" uid="uid://beenxx3i3gw84" path="res://Public/WizardPack/Fire vizard/Run/sprite.png" id="14_gevwb"]
+[ext_resource type="Script" path="res://Components/HealthComponent/health_component.gd" id="24_idchj"]
+[ext_resource type="PackedScene" uid="uid://c4ga5rn2h4fw2" path="res://Components/HealthBarComponent/health_bar_component.tscn" id="25_t5ksm"]
+[ext_resource type="Texture2D" uid="uid://diga3yyg7uops" path="res://Public/Solid_red.png" id="26_qh7q0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hvap7"]
 radius = 13.0
@@ -168,10 +171,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, 1)
-collision_layer = 4
-collision_mask = 19
+collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_t1lsd")
 metadata/_edit_lock_ = true
 
@@ -197,3 +200,19 @@ zoom = Vector2(1.6, 1.6)
 limit_left = 0
 limit_top = 0
 metadata/_edit_lock_ = true
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("24_idchj")
+max_health = 100
+
+[node name="HealthBarComponent" parent="." node_paths=PackedStringArray("texture_progress_bar", "health_component") instance=ExtResource("25_t5ksm")]
+texture_progress_bar = NodePath("TextureProgressBar")
+health_component = NodePath("../HealthComponent")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBarComponent"]
+offset_left = -58.0
+offset_top = -38.0
+offset_right = 142.0
+offset_bottom = -16.0
+scale = Vector2(0.6, 0.2)
+texture_progress = ExtResource("26_qh7q0")

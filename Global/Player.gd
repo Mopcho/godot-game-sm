@@ -18,5 +18,3 @@ func _ready():
 func calculate_player_health():
 	max_health = level * base_health
 	health = max_health
-	print("Health set to")
-	print(health)

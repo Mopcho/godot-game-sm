@@ -102,6 +102,34 @@ animations = [{
 radius = 8.99963
 height = 31.9987
 
+[sub_resource type="Animation" id="Animation_t5olj"]
+resource_name = "Boom"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9, 10, 11]
+}
+
 [sub_resource type="Animation" id="Animation_sas4b"]
 resource_name = "Idle"
 length = 0.5
@@ -145,34 +173,6 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_t5olj"]
-resource_name = "Boom"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Idle"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [5, 6, 7, 8, 9, 10, 11]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s2fcc"]
 _data = {
 "Boom": SubResource("Animation_t5olj"),
@@ -180,9 +180,9 @@ _data = {
 "RESET": SubResource("Animation_ejddx")
 }
 
-[node name="Fireball" type="CharacterBody2D"]
-collision_layer = 128
-collision_mask = 0
+[node name="Fireball" type="CharacterBody2D" groups=["player_attack"]]
+collision_layer = 8
+collision_mask = 5
 script = ExtResource("1_kdsjh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -197,9 +197,9 @@ animation = &"Idle"
 frame = 1
 metadata/_edit_lock_ = true
 
-[node name="DealDamage" type="Area2D" parent="."]
-collision_layer = 64
-collision_mask = 11
+[node name="DealDamage" type="Area2D" parent="." groups=["player_attack"]]
+collision_layer = 8
+collision_mask = 5
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DealDamage"]
