@@ -444,7 +444,7 @@ shape = SubResource("CapsuleShape2D_ccslg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -64)
 sprite_frames = SubResource("SpriteFrames_d45rq")
-animation = &"Idle"
+animation = &"Death"
 frame = 1
 metadata/_edit_lock_ = true
 
@@ -484,7 +484,9 @@ script = ExtResource("12_kqn0d")
 animation_player = NodePath("../../AnimationPlayer")
 enemy = NodePath("../..")
 
-[node name="HealthComponent" parent="." instance=ExtResource("7_yvi6u")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("animation_sprite", "state_machine") instance=ExtResource("7_yvi6u")]
+animation_sprite = NodePath("../AnimatedSprite2D")
+state_machine = NodePath("../StateMachine")
 
 [node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "stateMachine")]
 scale = Vector2(1.27609, 1)

@@ -11,7 +11,7 @@ func _ready():
 
 func _physics_process(delta):
 	if dead:
-		return
+		return;
 	move_and_slide()
 	
 	velocity.y += gravity * delta
@@ -22,7 +22,7 @@ func _physics_process(delta):
 		animationSprite.flip_h = true
 		
 func on_death():
-	dead = true
-	animationSprite.play("Death")
-	await animationSprite.animation_finished
 	queue_free()
+
+func before_death():
+	dead = true

@@ -545,4 +545,7 @@ script = ExtResource("9_2yh63")
 [node name="Timer" type="Timer" parent="Collectables"]
 autostart = true
 
+[node name="TileMap2" type="TileMap" parent="."]
+format = 2
+
 [connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]

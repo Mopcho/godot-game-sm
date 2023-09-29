@@ -13,5 +13,5 @@ func _on_body_entered(body):
 	if body.is_in_group("player_attack"):
 		var current_state = stateMachine.current_state
 		var currentStateNode = stateMachine.get_node("%s" % current_state)
-		currentStateNode.Transition.emit(currentStateNode, "Follow")
-		
+		if currentStateNode:
+			currentStateNode.Transition.emit(currentStateNode, "Follow")
