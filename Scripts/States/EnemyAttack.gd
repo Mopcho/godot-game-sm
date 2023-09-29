@@ -18,8 +18,9 @@ func Physics_Update(delta: float):
 	var direction = (player.global_position - enemy.global_position)
 	
 	enemy.velocity = Vector2()
-	
-	if direction.length() >= stop_attack_distance:
+	if player.dead:
+		Transition.emit(self, "Idle")
+	elif direction.length() >= stop_attack_distance:
 		Transition.emit(self, "Follow")
 	else:
 		animation_player.play("Attack")

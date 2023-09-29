@@ -6,6 +6,7 @@ var bullet_speed = 200
 var bullet = preload("res://Player/Spells/Fireball.tscn")
 var can_fire = true
 var fire_rate = 0.3
+var dead = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -51,7 +52,8 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
-	
+	if dead:
+		return;
 	if direction:
 		velocity.x = direction * SPEED
 		if velocity.y == 0:
@@ -69,3 +71,7 @@ func on_death():
 	queue_free()
 	Player.health = 50
 	get_tree().change_scene_to_file("res://main-scene.tscn")
+	
+func before_death():
+	dead = true
+

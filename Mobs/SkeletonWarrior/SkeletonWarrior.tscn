@@ -444,7 +444,7 @@ shape = SubResource("CapsuleShape2D_ccslg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -64)
 sprite_frames = SubResource("SpriteFrames_d45rq")
-animation = &"Death"
+animation = &"Attack"
 frame = 1
 metadata/_edit_lock_ = true
 

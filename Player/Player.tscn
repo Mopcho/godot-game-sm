@@ -80,7 +80,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_ypxri")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 5.0
 }, {
@@ -186,7 +186,6 @@ metadata/_edit_lock_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u61fr")
 animation = &"Death"
-frame_progress = 0.312833
 metadata/_edit_lock_ = true
 
 [node name="MarkerController" type="Node2D" parent="."]
@@ -201,9 +200,10 @@ limit_left = 0
 limit_top = 0
 metadata/_edit_lock_ = true
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("animation_sprite")]
 script = ExtResource("24_idchj")
 max_health = 100
+animation_sprite = NodePath("../AnimatedSprite2D")
 
 [node name="HealthBarComponent" parent="." node_paths=PackedStringArray("texture_progress_bar", "health_component") instance=ExtResource("25_t5ksm")]
 texture_progress_bar = NodePath("TextureProgressBar")

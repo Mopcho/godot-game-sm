@@ -29,7 +29,7 @@ func Physics_Update(delta: float):
 	if enemy:
 		enemy.velocity.x = move_direction * move_speed
 	var direction = player.global_position - enemy.global_position
-	if direction.length() <= start_chase_distance:
+	if direction.length() <= start_chase_distance && !player.dead:
 		Transition.emit(self, "Follow")
 	
 

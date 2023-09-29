@@ -13,9 +13,11 @@ func _ready():
 func damage(damage_amount):
 	health -= damage_amount
 	
-	if health <= 0:
-		get_parent().before_death()		
-		state_machine.current_state = null
+	if health <= 0:	
+		if "before_death" in get_parent():
+			get_parent().before_death()
+		if state_machine:
+			state_machine.current_state = null
 		animation_sprite.play(death_animation_name)
 		await animation_sprite.animation_finished
 		get_parent().on_death()
