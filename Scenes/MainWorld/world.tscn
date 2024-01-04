@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://boc3fc3oyvcp4"]
+[gd_scene load_steps=13 format=3 uid="uid://boc3fc3oyvcp4"]
 
 [ext_resource type="Texture2D" uid="uid://ig334nugs0an" path="res://Public/Sunny-land-files/Sunny-land-assets-files/PNG/environment/layers/tileset.png" id="1_r6m0h"]
 [ext_resource type="Script" path="res://BG.gd" id="2_bwogq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/MainWorld/Mobs.gd" id="5_4jrf8"]
 [ext_resource type="PackedScene" uid="uid://s1moeu365vur" path="res://Mobs/SkeletonWarrior/SkeletonWarrior.tscn" id="6_t380r"]
 [ext_resource type="Script" path="res://UI/HP.gd" id="7_08ft8"]
+[ext_resource type="PackedScene" uid="uid://dvhuslhjgctb7" path="res://Mobs/Skeleton Archer/SkeletonArcher.tscn" id="7_emi2a"]
 [ext_resource type="Script" path="res://UI/GoldUI.gd" id="8_tn1ev"]
 [ext_resource type="Script" path="res://Scenes/MainWorld/Collectables.gd" id="9_2yh63"]
 
@@ -515,6 +516,9 @@ script = ExtResource("5_4jrf8")
 
 [node name="SkelletonWarrior" parent="Mobs" instance=ExtResource("6_t380r")]
 position = Vector2(873, 357)
+
+[node name="SkeletonArcher" parent="Mobs" instance=ExtResource("7_emi2a")]
+position = Vector2(689, 352)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

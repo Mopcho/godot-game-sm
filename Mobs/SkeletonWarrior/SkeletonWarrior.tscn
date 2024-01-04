@@ -497,7 +497,7 @@ health_component = NodePath("../HealthComponent")
 stateMachine = NodePath("../StateMachine")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-position = Vector2(3, -29)
+position = Vector2(2.36572, -29)
 scale = Vector2(-1.09296, 0.634199)
 shape = SubResource("CapsuleShape2D_832h0")
 
