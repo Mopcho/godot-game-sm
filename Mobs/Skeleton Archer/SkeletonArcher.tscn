@@ -5,14 +5,18 @@
 [ext_resource type="Script" path="res://Components/HitBoxComponent/HitBoxComponent.gd" id="2_7rsvo"]
 [ext_resource type="Texture2D" uid="uid://n0ncw5kraeh5" path="res://Public/SkeletonPack/Skeleton_Archer/Attack_1.png" id="2_562d4"]
 [ext_resource type="Texture2D" uid="uid://nmtlrv8kj3x3" path="res://Public/SkeletonPack/Skeleton_Archer/Dead.png" id="3_d66ss"]
-[ext_resource type="Script" path="res://Components/HealthComponent/health_component.gd" id="3_spxta"]
 [ext_resource type="PackedScene" uid="uid://c4ga5rn2h4fw2" path="res://Components/HealthBarComponent/health_bar_component.tscn" id="4_4rsqx"]
 [ext_resource type="Texture2D" uid="uid://diga3yyg7uops" path="res://Public/Solid_red.png" id="5_3lepy"]
 [ext_resource type="Texture2D" uid="uid://bnspv7ydn1y76" path="res://Public/SkeletonPack/Skeleton_Archer/Walk.png" id="5_gmhot"]
-[ext_resource type="Script" path="res://Scripts/States/StateMachine.gd" id="6_r528r"]
 [ext_resource type="Script" path="res://Scripts/States/EnemyIdle.gd" id="7_lqcj6"]
 [ext_resource type="Script" path="res://Scripts/States/EnemyChase.gd" id="8_kat2u"]
 [ext_resource type="Script" path="res://Scripts/States/EnemyAttack.gd" id="9_v16p1"]
+[ext_resource type="PackedScene" uid="uid://dbryelnwvi64w" path="res://Scripts/States/state_machine.tscn" id="10_alc4g"]
+[ext_resource type="PackedScene" uid="uid://cu8kurfiuxyob" path="res://Components/HealthComponent/health_component.tscn" id="13_fhjnu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pe3o0"]
+radius = 12.0
+height = 74.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8yncu"]
 atlas = ExtResource("2_562d4")
@@ -337,13 +341,13 @@ _data = {
 radius = 15.0
 height = 84.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pe3o0"]
-radius = 12.0
-height = 74.0
-
 [node name="SkeletonArcher" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 4
 script = ExtResource("1_p5g6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -34)
+shape = SubResource("CapsuleShape2D_pe3o0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(7, -64)
@@ -354,22 +358,6 @@ animation = &"Attack"
 libraries = {
 "": SubResource("AnimationLibrary_5vr7f")
 }
-
-[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "stateMachine")]
-collision_layer = 4
-collision_mask = 8
-script = ExtResource("2_7rsvo")
-health_component = NodePath("../HealthComponent")
-stateMachine = NodePath("../StateMachine")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-position = Vector2(2, -34)
-shape = SubResource("CapsuleShape2D_nljig")
-
-[node name="HealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("animation_sprite", "state_machine")]
-script = ExtResource("3_spxta")
-animation_sprite = NodePath("../AnimatedSprite2D")
-state_machine = NodePath("../StateMachine")
 
 [node name="HealthBarComponent" parent="." node_paths=PackedStringArray("texture_progress_bar", "health_component") instance=ExtResource("4_4rsqx")]
 texture_progress_bar = NodePath("TextureProgressBar")
@@ -382,8 +370,7 @@ offset_right = 101.0
 offset_bottom = -69.0
 texture_progress = ExtResource("5_3lepy")
 
-[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("6_r528r")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("10_alc4g")]
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "animation_sprite_2d")]
@@ -394,6 +381,7 @@ animation_sprite_2d = NodePath("../../AnimatedSprite2D")
 [node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "animation_sprite_2d")]
 script = ExtResource("8_kat2u")
 enemy = NodePath("../..")
+stop_chase_distance = 1000
 animation_sprite_2d = NodePath("../../AnimatedSprite2D")
 
 [node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animation_player", "enemy")]
@@ -401,8 +389,19 @@ script = ExtResource("9_v16p1")
 animation_player = NodePath("../../AnimationPlayer")
 enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("animation_sprite", "state_machine") instance=ExtResource("13_fhjnu")]
+animation_sprite = NodePath("../AnimatedSprite2D")
+state_machine = NodePath("../StateMachine")
+
+[node name="HitBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "stateMachine")]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("2_7rsvo")
+health_component = NodePath("../HealthComponent")
+stateMachine = NodePath("../StateMachine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(2, -34)
-shape = SubResource("CapsuleShape2D_pe3o0")
+shape = SubResource("CapsuleShape2D_nljig")
 
 [connection signal="body_entered" from="HitBoxComponent" to="HitBoxComponent" method="_on_body_entered"]
